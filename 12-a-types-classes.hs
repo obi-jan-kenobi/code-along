@@ -1,6 +1,6 @@
 -- type constructor left side of  '='
 -- value constructor right side of '='
-data Bool = False | True
+-- data Bool = False | True
 
 
 data Point = Point Float Float deriving (Show)
@@ -23,3 +23,12 @@ area (Rectangle (Point x1 y1) (Point x2 y2)) = (abs $ x2 - x1) * (abs $ y2 - y1)
 map (Circle 2 2) [1,2,3,4] makes 4 circles 
 [Circle 2 2 1, Circle 2 2 2, ...] 
 -}
+
+data TrafficLight = Red | Yellow | Green
+
+instance Eq TrafficLight where
+  Red == Red = True
+  Yellow == Yellow = True
+  Green == Green = True
+  _ == _ = False
+

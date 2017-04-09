@@ -20,8 +20,6 @@ isGood _      = False
 assess :: String -> (String, Bool)
 assess movie = (movie, assessment)
   where assessment = isGood movie
-                     
-                     
 
 -- only assessing lists with one or two values
 assessMovies' :: [] String -> [] (String, Bool)
