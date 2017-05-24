@@ -32,3 +32,6 @@ foldBool x y z
 
 g :: (a -> b) -> (a, c) -> (b, c)
 g f (x, xs) = (f x, xs)
+
+roundTrip :: (Show a, Read b) => a -> b
+roundTrip = read . show
