@@ -27,3 +27,7 @@ x :: a -> a -> a
 x _ a = a
 x a _ = a
 
+3.
+x :: a -> b -> b
+x _ b = b
+
