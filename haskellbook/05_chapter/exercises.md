@@ -18,3 +18,12 @@ Is partial application of infix operators
     -- 25
 
 Its possible to apply prefix operators in infix with `backticks` (``)
+
+Parametricity
+
+1. impossible
+2. 
+x :: a -> a -> a
+x _ a = a
+x a _ = a
+
