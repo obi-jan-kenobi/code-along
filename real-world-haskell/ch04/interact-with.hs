@@ -1,8 +1,10 @@
 import System.Environment (getArgs)
+import SplitLines (splitLine)
 
-interactWith fn inputFile outputFile = do
-    input <- readFile inputFile
-    writeFile outputFile (fn input)
+interactWith fn inputFile outputFile =
+    do
+        input <- readFile inputFile
+        writeFile outputFile (fn input)
 
 main = mainWith myFn
     where mainWith fn = do
@@ -10,5 +12,6 @@ main = mainWith myFn
         case args of
             [input, output] -> interactWith fn input output
             _ -> putStrLn "error: exactly two arguments needed"
-    
-        myFn = id
+
+
+myFn = unlines . splitLine
