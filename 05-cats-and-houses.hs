@@ -24,12 +24,12 @@ humanAge (Cat _ _ catAge)
   | catAge == 2 = 25
   | otherwise = 25 + (catAge - 2) * 4
 
-  street :: House : []
-  street = 
-    [ House 1 (Cat "George" Siamese 10)
-    , House 2 (Cat "Mr Bigglesworth" Persian 5)
-    , House 3 (Cat "Mr Tinkles" Burmese 1)
-    ]
+street :: House : [] -- same as [House]
+street = 
+  [ House 1 (Cat "George" Siamese 10)
+  , House 2 (Cat "Mr Bigglesworth" Persian 5)
+  , House 3 (Cat "Mr Tinkles" Burmese 1)
+  ]
 
 getCatFromHouse :: House -> Cat
 getCatFromHouse (House _ c) = c

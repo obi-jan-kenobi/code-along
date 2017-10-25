@@ -4,8 +4,6 @@ import Data.Char
 -- and yields that as its own result
 -- several 'do-blocks' can be nested
 
-
-
 main = do 
   putStrLn "whats your firstname?"
   firstname <- getLine

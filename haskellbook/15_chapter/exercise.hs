@@ -5,6 +5,7 @@ data Optional a
 
 
 -- instance Monoid a => besagt, dass a im Optional a auch Monoid sein muss
+-- ohne einschraenkung "instance Monoid (Optional a)"
 instance Monoid a => Monoid (Optional a) where
     mempty = Nada
     mappend Nada (Optional a) = Optional a

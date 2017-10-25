@@ -18,12 +18,12 @@ adviceOnEscape animal =
     Flea -> "Dont worry"
 
 -- recursion
-adviceOnZooEscape :: Zoo -> [] String
+adviceOnZooEscape :: Zoo -> [] String -- same as [String]
 adviceOnZooEscape [] = []
 adviceOnZooEscape (x:xs) = adviceOnEscape x : adviceOnZooEscape xs
 
 -- local var
-adviceOnZooEscape' :: Zoo -> [] String
+adviceOnZooEscape' :: Zoo -> String : [] -- same as [String]
 adviceOnZooEscape' xs =
     foldr addAdviceForAnimal [] xs
   where addAdviceForAnimal animal adviceList =
