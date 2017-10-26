@@ -12,3 +12,15 @@ sidestep = (,) <$> y
 
 tupled :: Maybe (Integer, Integer)
 tupled = (,) <$> y <*> z
+
+xs = [1,2,3]
+ys = [4,5,6]
+
+xss :: Maybe Integer
+xss = lookup 3 $ zip xs ys
+
+yss :: Maybe Integer
+yss = lookup 2 $ zip xs ys
+
+summed :: Maybe Integer
+summed = fmap sum $ (,) <$> xss <*> yss
