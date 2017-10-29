@@ -24,3 +24,7 @@ yss = lookup 2 $ zip xs ys
 
 summed :: Maybe Integer
 summed = fmap sum $ (,) <$> xss <*> yss
+
+ex1106_1 = const <$> Just "hello" <*> pure "world"
+ex1106_2 = (,,,) <$> Just 90 <*> Just 10 <*> Just "Tierness" <*> pure [1,2,3]
+
