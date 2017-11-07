@@ -1,7 +1,9 @@
 module Main where
 
 import Test.Hspec
+import Test.QuickCheck
 import WordNumber
+import HalfIdentity
 
 main :: IO ()
 main = hspec $ do
@@ -22,3 +24,8 @@ main = hspec $ do
             wordNumber 100 `shouldBe` "one-zero-zero"
         it "nine-zero-zero-one for 9001" $ do
             wordNumber 9001 `shouldBe` "nine-zero-zero-one"
+
+    describe "halfIdentity" $ do
+        it "should always return its input unmodified" $ do
+            property $ \x -> halfIdentity x == (x :: Double)
+
