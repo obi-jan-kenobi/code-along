@@ -83,3 +83,11 @@ main = hspec $ do
         it "is the same as n" $ do
             property $ \x xs -> length (take x (xs :: [Int])) == (x :: Int)
 
+    describe "f x = (read (show x))" $ do
+        it "is the same as x" $ do
+            property $ \x -> (read (show x)) == (x :: Int)
+
+    describe "(x * x) . sqrt" $ do
+        it "is the same as id" $ do
+            property $ \x -> (square . sqrt) x == id (x :: Float)
+                where square n = n * n
