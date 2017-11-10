@@ -58,9 +58,28 @@ main = hspec $ do
             property $ \x y -> x /= 0 && y /= 0 ==> (div x y) * y + (mod x (y :: Int)) == (x :: Int)
 
     describe "Power" $ do
-        it "should be associative" $ do
-            property $ \x y z -> (x ^ y) ^ z == (x :: Int) ^ ((y :: Int) ^ (z :: Int))
+        it "should not be associative" $ do
+            property $ \x y z -> x /= 0 && y > 0 && z > 0 ==> (x ^ y) ^ z /= (x :: Int) ^ ((y :: Int) ^ (z :: Int))
 
     describe "reverse twice == id" $ do
         it "reverse . reverse == id for lists" $ do
             property $ \x -> (reverse $ reverse x) == id (x :: [Int])
+
+    describe "function application" $ do
+        it "f a == f $ a" $ do
+            property $ \x -> ((+) x ((+) x x)) == ((+) x $ (+) x (x :: Int))
+
+    describe "f . g == x -> f (g x)" $ do
+        it "should be the same" $ do
+            property $ \x -> ((2+) . (2-)) x == ((2+) ((2-)(x :: Int)))
+
+    describe "foldr" $ do
+        it "foldr (:) == (++)" $ do
+            property $ \x -> foldr (:) "" x == (++) "" (x :: [Char])
+        it "foldr (++) [] == concat" $ do
+            property $ \x -> foldr (++) [] x == concat (x :: [[Char]])
+
+    describe "f n xs = length (take n xs)" $ do
+        it "is the same as n" $ do
+            property $ \x xs -> length (take x (xs :: [Int])) == (x :: Int)
+
