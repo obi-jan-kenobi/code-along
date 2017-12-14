@@ -43,4 +43,4 @@ instance Applicative Identity where
 
 instance Monad Identity where
     return = pure
-    >>= (Identity x) f = f x
+    (>>=) (Identity x) f = f x
