@@ -45,7 +45,7 @@ main = hspec $ do
 
     describe "Associativity Multiplication" $ do
         it "should hold" $ do
-            property $ \x y z -> x * (y * z) == ((x :: Int) * (y :: Int)) * (z :: Int)
+            property $ \x y z -> x * (y * z) == ((x) * (y)) * (z :: Int)
 
     describe "Commutativity Multiplication" $ do
         it "should hold" $ do
