@@ -44,3 +44,40 @@ instance Applicative Identity where
 instance Monad Identity where
     return = pure
     (>>=) (Identity x) f = f x
+
+data List a
+    = Nil
+    | Cons a (List a)
+    deriving (Eq, Show)
+
+instance Functor List where
+    fmap _ Nil = Nil
+    fmap f (Cons a (l)) = (Cons (f a) (fmap f l))
+
+instance Monoid (List a) where
+    mempty = Nil
+    mappend Nil xs = xs
+    mappend xs Nil = xs
+    mappend (Cons x xs) ys = Cons x (mappend xs ys)
+
+instance Applicative List where
+    pure a = (Cons a) Nil
+    (<*>) Nil _ = Nil
+    (<*>) _ Nil = Nil
+    (<*>) (Cons f fs) xs = mappend (fmap f xs) (fs <*> xs)
+
+instance Monad List where
+    return = pure
+    (>>=) (Cons x xs) f = mappend (f x) (xs >>= f)
+
+j :: Monad m => m (m a) -> m a
+j m = m >>= id
+
+l1 :: Monad m => (a -> b) -> m a -> m b
+l1 = fmap
+
+l2 :: Monad m => (a -> b -> c) -> m a -> m b -> m c
+l2 f x y = f <$> x <*> y
+
+a :: Monad m => m a -> m (a -> b) -> m b
+a = flip (<*>)
