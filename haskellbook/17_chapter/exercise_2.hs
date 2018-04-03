@@ -14,3 +14,4 @@ sidestep = max' <$> x
 
 maxed :: Maybe Int
 maxed = max' <$> x <*> y
+

@@ -7,6 +7,7 @@ type Password = String
 data Validation e a
   = Error e
   | Valid a
+  deriving (Show, Eq)
 
 instance Functor (Validation e) where
   fmap f (Valid a) = Valid $ f a
@@ -20,14 +21,15 @@ instance (Monoid e) => Applicative (Validation e) where
   (<*>) (Error x) _ = Error x
   (<*>) _ (Error y) = Error y
 
-passwordLength :: Password -> Either String Password
+passwordLength :: Password -> Validation [String] Password
 passwordLength pw
-  | length pw < 8 = Left "Password too short"
-  | otherwise = Right pw
+  | length pw < 8 = Error ["Password too short"]
+  | otherwise = Valid pw
 
-passwordChars :: Password -> Either String Password
+passwordChars :: Password -> Validation [String] Password
 passwordChars pw
-  | (length $ nub pw) < 4 = Left "Too many repetitive chars"
-  | otherwise = Right pw
+  | (length $ nub pw) < 4 = Error ["Too many repetitive chars"]
+  | otherwise = Valid pw
 
-
+validatePW :: Password -> Validation [String] Password
+validatePW pw = (\x y -> y) <$> passwordLength pw <*> passwordChars pw

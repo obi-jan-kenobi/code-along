@@ -81,3 +81,12 @@ l2 f x y = f <$> x <*> y
 
 a :: Monad m => m a -> m (a -> b) -> m b
 a = flip (<*>)
+
+meh :: Monad m => [a] -> (a -> m b) -> m [b]
+meh [] _ = pure []
+meh (x:xs) f = do
+  x' <- f x
+  ((:) x') <$> (meh xs f)
+  
+flipType :: (Monad m) => [m a] -> m [a]
+flipType = (flip meh) id
