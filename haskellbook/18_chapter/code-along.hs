@@ -31,3 +31,8 @@ mkSphericalCow name age weight = do
     age' <- noNegative age
     weight' <- noNegative weight
     weightCheck (Cow name' age' weight')
+
+
+mcomp :: Monad m => (b -> m c) -> (a -> m b) -> (a -> m c)
+mcomp f g = (\x -> (g x) >>= f)
+
