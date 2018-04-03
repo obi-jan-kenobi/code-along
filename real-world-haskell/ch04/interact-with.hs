@@ -1,3 +1,5 @@
+module CLI where
+
 import System.Environment (getArgs)
 import SplitLines (splitLine)
 

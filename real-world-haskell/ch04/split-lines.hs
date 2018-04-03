@@ -17,3 +17,6 @@ isLineTerminator c = c == '\r' || c == '\n'
 
 firstWord :: [String] -> [String]
 firstWord xs = map (head . words) xs
+
+fixLines :: String -> String
+fixLines = unlines . splitLines
