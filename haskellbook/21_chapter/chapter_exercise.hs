@@ -53,3 +53,23 @@ instance Foldable Optional where
 instance Traversable Optional where
     traverse f (Yep x) = fmap Yep $ f x
     traverse f _ = pure Nada
+
+data List a
+    = Nil
+    | Cons a (List a)
+    deriving (Show, Eq)
+
+instance Functor List where
+    fmap f Nil = Nil
+    fmap f (Cons x xs) = Cons (f x) (fmap f xs)
+
+instance Foldable List where
+    foldr f init Nil = init
+    foldr f init xs = go f init xs init
+        where
+            go f init Nil acc = acc
+            go f init (Cons x xs) acc = go f init xs (f x acc)
+
+instance Traversable List where
+    traverse f Nil = pure Nil
+    traverse f (Cons x xs) = fmap Cons
