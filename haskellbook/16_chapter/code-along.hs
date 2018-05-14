@@ -1,3 +1,4 @@
+{-# LANGUAGE RankNTypes #-}
 -- argument & result are both of type a
 -- a has kind *
 class Sumthin a where
@@ -61,3 +62,7 @@ instance Functor (Two a) where
 instance Functor (Or a) where
     fmap _ First a = First a
     fmap f Second b = Second (f b)
+
+
+type Nat f g
+    = forall a . f a -> g a
