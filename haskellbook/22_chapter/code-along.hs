@@ -42,3 +42,9 @@ bbop = (+) <$> boop <*> doop
 
 bblop = bbop 3
 -- ((*2) 3) + ((+10) 3)
+
+-- Applicative f =>
+-- f ~ (->) r
+-- pure :: a -> f a pure :: a -> (r -> a)
+-- (<*>) :: f (a -> b) -> f a -> f b 
+-- (<*>) :: (r -> a -> b) -> (r -> a) -> (r -> b)
