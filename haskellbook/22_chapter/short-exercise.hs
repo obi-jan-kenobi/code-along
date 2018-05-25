@@ -1,3 +1,5 @@
+{-# LANGUAGE InstanceSigs #-}
+
 module ShortExercise where
 
 import Control.Applicative
@@ -45,3 +47,8 @@ asks f = Reader f
 instance Applicative (Reader r) where
   pure a = Reader $ \r -> a
   (<*>) (Reader rab) (Reader ra) = Reader $ \r -> (rab r) (ra r)
+
+instance Monad (Reader r) where
+  return = pure
+  (>>=) :: Reader r a -> (a -> Reader r b) -> Reader r b
+  (Reader ra) >>= aRb = Reader $ \r -> (runReader (aRb (ra r)) r)
