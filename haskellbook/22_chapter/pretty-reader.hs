@@ -20,6 +20,8 @@ class Functor f => Applicative f where
 
 class Applicative f => Monad f where
   return :: a -> f a
+--(>>=) :: ((->) r) a -> (a -> ((->) r b) -> ((-> r) b)
+--(>>=) :: (r -> a) -> (a -> r -> b) -> (r -> b)
   (>>=) :: f a -> (a -> f b) -> f b
 
 instance Functor ((->) r) where
@@ -31,4 +33,6 @@ instance Applicative ((->) r) where
 
 instance Monad ((->) r) where
   return = pure
-  f >>= a = flip k <*> m
+  f >>= a = flip a <*> f
+
+-- flip a :: (r -> a -> b) 
