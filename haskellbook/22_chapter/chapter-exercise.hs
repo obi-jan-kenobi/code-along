@@ -46,3 +46,14 @@ main = do
   print $ fmap summed ((,) <$> xs <*> zs)
   print $ bolt 7
   print $ fmap bolt z
+  -- sequenceA :: (Applicative f, Traversable t) => t (f a) -> f (t a)
+  -- sequenceA :: [] ((-> r) Bool) -> ((-> r) [Bool])
+  print $ sequenceA [(>3), (<8), even] 7
+  print $ sequA $ fromMaybe 0 s'
+  print $ foldr (&&) True $ sequA 7
+  print $ bolt $ fromMaybe 0 ys 
+sequA :: Integral a => a -> [Bool]
+sequA m = sequenceA [(>3), (<8), even] m
+
+s' :: Maybe Integer
+s' = summed <$> ((,) <$> xs <*> ys)
