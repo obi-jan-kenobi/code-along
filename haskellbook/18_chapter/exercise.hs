@@ -68,7 +68,8 @@ instance Applicative List where
 
 instance Monad List where
     return = pure
-    (>>=) (Cons x xs) f = mappend (f x) (xs >>= f)
+    -- (>>=) (Cons x xs) f = mappend (f x) (xs >>= f)
+    (Cons x xs) >>= f = mappend (f x) (xs >>= f)
 
 j :: Monad m => m (m a) -> m a
 j m = m >>= id

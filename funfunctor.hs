@@ -10,4 +10,4 @@ instance Functor (Tree a) where
   fmap f Tree  = 
 
 instance Functor ((->) r) where
-  fmap f (-> r) = f r
+  fmap f ((->) r) = f r

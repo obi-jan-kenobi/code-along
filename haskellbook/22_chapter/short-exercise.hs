@@ -21,6 +21,18 @@ tupled :: [Char] -> ([Char], [Char])
 tupled = (,) <$> rev <*> cap
 
 -- (,) <$> rev
+-- fmap :: (a -> b) -> f a -> f b
+-- (,) :: (c -> (d -> (c, d)))
+-- rev :: [Char] -> [Char]
+
+-- fmap (,) rev :: (a -> (b -> (a, b))) -> ([Char] -> [Char]) -> ([Char] -> (b -> ([Char], b)))
+
+-- ap :: f (a -> b) -> f a -> f b
+-- fmap (,) rev :: ([Char] -> (b -> ([Char], b)))
+-- cap :: [Char] -> [Char]
+-- ap (fmap (,) rev) cap :: ([Char] -> (b -> ([Char], b))) -> ([Char] -> b) -> ([Char] -> ([Char], [Char]))
+
+
 -- :t (a -> (b -> (a,b))) <$> ((-> [Char]) [Char])
 -- [Char] -> b -> ([Char], b)
 --
